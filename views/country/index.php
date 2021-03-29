@@ -29,17 +29,32 @@ $this->params['breadcrumbs'][] = $this->title;
             'Code',
             'Name',
             'Continent',
-            'Region',
-            'SurfaceArea',
+            //'Region',
+            [ 'label' => 'Oppervlakte',
+            'attribute' => 'SurfaceArea',
+            'format' => 'raw',
+            'value' => function($data) {
+                                            return sprintf("%8d k&#13217", $data->SurfaceArea);
+                                        }
+            ],
             //'IndepYear',
-            //'Population',
+            [ 'label' => 'Inwoners',
+            'attribute' => 'Population',
+            'contentOptions' => ['style' => 'width:30px; white-space: normal;'],
+            ],
             //'LifeExpectancy',
             //'GNP',
             //'GNPOld',
             //'LocalName',
             //'GovernmentForm',
             //'HeadOfState',
-            //'Capital',
+            [ 'label' => 'Hoofdstad',
+            'attribute' => 'Capital',
+            'contentOptions' => ['style' => 'width:30px; white-space: normal;'],
+            'value' => function($data) {
+                                            return "/city/index?CitySearch[ID]=179";
+                                        }
+            ],
             //'Code2',
 
             ['class' => 'yii\grid\ActionColumn'],
